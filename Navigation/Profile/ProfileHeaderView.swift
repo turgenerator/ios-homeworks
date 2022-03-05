@@ -88,7 +88,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         statusButton.titleLabel?.font = UIFont.systemFont(ofSize: 16) // Шрифт и размеры
         statusButton.translatesAutoresizingMaskIntoConstraints = false // отключаем AutoresizingMask
         statusButton.backgroundColor = .blue  // задаем цвет кнопке
-        statusButton.layer.cornerRadius = 4  // скругляем углы
+        statusButton.layer.cornerRadius = 4   // скругляем углы
         statusButton.addTarget(self, action: #selector(buttonAction),
                                for: .touchUpInside) // Добавляем Action
         // устанавливаем тень кнопки
@@ -97,6 +97,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         statusButton.layer.shadowColor = UIColor.black.cgColor
         statusButton.layer.shadowOpacity = 0.7
         statusButton.layer.shouldRasterize = true
+        
         
         return statusButton
     }()

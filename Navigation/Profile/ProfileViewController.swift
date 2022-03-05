@@ -15,6 +15,7 @@ final class ProfileViewController: UIViewController {
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false // отключаем AutoresizingMask
         
+        
         return view
     }()
     
@@ -23,6 +24,7 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.profileHeaderView) // Добавляем ProfileHeaderView в качестве subview
+        
         setupView() // отображаем вьюху
         tapGesturt() // скрываем клавиатуру
     }
