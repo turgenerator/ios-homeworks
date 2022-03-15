@@ -47,7 +47,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
 
     private lazy var nameLabel: UILabel = {   // Устанавливаем метку имени
         let nameLabel = UILabel() // Создаем метку
-        nameLabel.text  = "Никита" // Именуем метку
+        nameLabel.text  = "NICK" // Именуем метку
         nameLabel.textColor = .black // цвет текста
         nameLabel.font = UIFont.boldSystemFont(ofSize: 18.0) // тольщина и размер текста
 
@@ -88,7 +88,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         statusButton.titleLabel?.font = UIFont.systemFont(ofSize: 16) // Шрифт и размеры
         statusButton.translatesAutoresizingMaskIntoConstraints = false // отключаем AutoresizingMask
         statusButton.backgroundColor = .blue  // задаем цвет кнопке
-        statusButton.layer.cornerRadius = 4   // скругляем углы
+        statusButton.layer.cornerRadius = 4  // скругляем углы
         statusButton.addTarget(self, action: #selector(buttonAction),
                                for: .touchUpInside) // Добавляем Action
         // устанавливаем тень кнопки
@@ -97,7 +97,6 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         statusButton.layer.shadowColor = UIColor.black.cgColor
         statusButton.layer.shadowOpacity = 0.7
         statusButton.layer.shouldRasterize = true
-        
         
         return statusButton
     }()
@@ -156,7 +155,7 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         return false
     }
     
-    
+   
     @objc private func buttonAction() { // Вставляем текстовое поле
         
         let topConstrain = self.textField.topAnchor.constraint(equalTo: self.avatarStackView.bottomAnchor, constant: -10) // верх layoutMarginsGuide
@@ -172,14 +171,14 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
             self.addSubview(self.textField)
             textField.text = nil
             
-            statusButton.setTitle("Установите статус", for: .normal)  // Устанавливаем надпись
+            statusButton.setTitle("Set status", for: .normal)  // Устанавливаем надпись
             self.buttonTopConstrain?.isActive = false
             NSLayoutConstraint.activate([topConstrain, leadingConstrain, trailingConstrain, textHeight, buttonTopConstrain].compactMap( {$0} ))
             
         } else {
             statusText = textField.text! // Меняем текст
             statusLabel.text = "\(statusText ?? "")"
-            statusButton.setTitle("Введите статус", for: .normal)
+            statusButton.setTitle("Show status", for: .normal)
             
             self.textField.removeFromSuperview()
             NSLayoutConstraint.deactivate([topConstrain, leadingConstrain, trailingConstrain, textHeight].compactMap( {$0} ))
@@ -195,4 +194,3 @@ class ProfileHeaderView: UIView, UITextFieldDelegate {
         print("Новый статус = \(status)")
     }
 }
-

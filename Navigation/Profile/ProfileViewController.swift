@@ -8,13 +8,12 @@
 import UIKit
 
 final class ProfileViewController: UIViewController {
-
+    
     // Создаем экземпляр класса ProfileHeaderView в классе ProfileViewController
     private lazy var profileHeaderView: ProfileHeaderView = {
         let view = ProfileHeaderView(frame: .zero) // создаем вью ProfileHeaderView
         view.delegate = self
         view.translatesAutoresizingMaskIntoConstraints = false // отключаем AutoresizingMask
-        
         
         return view
     }()
@@ -24,10 +23,10 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.addSubview(self.profileHeaderView) // Добавляем ProfileHeaderView в качестве subview
-        
         setupView() // отображаем вьюху
         tapGesturt() // скрываем клавиатуру
     }
+    
     private func setupView() {  // Создаем констрейты к profileHeaderView
         self.view.backgroundColor = .lightGray // Задаем базовый цвет
         let viewTopConstraint = self.profileHeaderView.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor) // верх
@@ -44,6 +43,7 @@ final class ProfileViewController: UIViewController {
         self.view.addGestureRecognizer(tapGesture)
     }
 }
+
 extension ProfileViewController: ProfileHeaderViewProtocol { // разширение разширения вью
 
     func buttonAction(inputTextIsVisible: Bool, completion: @escaping () -> Void) {
@@ -55,7 +55,4 @@ extension ProfileViewController: ProfileHeaderViewProtocol { // разширен
             completion()
         }
     }
-    }
-    
-
-   
+}
