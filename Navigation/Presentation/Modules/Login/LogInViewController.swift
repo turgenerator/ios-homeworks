@@ -6,7 +6,8 @@ import UIKit
 class LogInViewController: UIViewController {
     
     
-    
+    let login = "torch2120@gmail.com"
+    let password = "12345678"
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -75,6 +76,15 @@ class LogInViewController: UIViewController {
 
         return button
     }()
+    
+    private lazy var errorLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        
+        
+        return label
+    }()
 
     override func viewDidLoad() {
         
@@ -108,6 +118,7 @@ class LogInViewController: UIViewController {
         self.scrollView.addSubview(loginTextField)
         self.scrollView.addSubview(passwordTextField)
         self.scrollView.addSubview(initButton)
+        self.view.addSubview(self.errorLabel)
         
         
     }
@@ -136,6 +147,11 @@ class LogInViewController: UIViewController {
         let initButtonWidthAnchor = self.initButton.widthAnchor.constraint(equalTo: self.scrollView.widthAnchor)
         let initButtonHeightAnchor = self.initButton.heightAnchor.constraint(equalToConstant: 50)
         
+       
+        let errorLabelTopConstraint = self.errorLabel.topAnchor.constraint(equalTo: self.initButton.bottomAnchor, constant: 16)
+        let errorLabelRightConstraint = self.errorLabel.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -16)
+        let errorLabelLeftConstraint = self.errorLabel.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 16)
+        
         NSLayoutConstraint.activate([
             scrollViewTopConstraint, scrollViewRightConstraint,
             scrollViewBottomConstraint,scrollViewLeftConstraint,
@@ -146,25 +162,63 @@ class LogInViewController: UIViewController {
             passwordTextFieldTopConstraint, passwordTextFieldWidthAnchor,
             passwordTextFieldHeightAnchor,
             initButtonTopConstraint, initButtonWidthAnchor,
-            initButtonHeightAnchor
+            initButtonHeightAnchor, errorLabelTopConstraint, errorLabelLeftConstraint, errorLabelRightConstraint, errorLabelTopConstraint
         ])
     }
+    
+    
 
     
     @objc private func didTapLogInButton(_ sender: UIButton){
         
         let profileViewController = ProfileViewController()
-        if passwordTextField.text != "" && loginTextField.text != ""{
+        if passwordTextField.text == password && loginTextField.text == login && loginTextField.text?.isValidEmail == true {
         self.navigationController?.pushViewController(profileViewController, animated: true)
-        } else {
+        } else if   loginTextField.text != login && loginTextField.text?.isValidEmail == false {
+            
             loginTextField.placeholder = "Введите логин для входа"
-            passwordTextField.placeholder = "Введите пароль для входа"
+            loginTextField.backgroundColor = UIColor.white
+            
+            openAlertEmailError()
+            
+        }
+        if passwordTextField.text != password {
+            
+        
+        
+        passwordTextField.placeholder = "Введите пароль для входа"
+        passwordTextField.backgroundColor = UIColor.white
+        
+        openAlert()
         }
         
+        if loginTextField.text == "" {
+            loginTextField.shake()
+            loginTextField.backgroundColor = UIColor.red
+        }
+        
+        if passwordTextField.text == "" {
+            passwordTextField.shake()
+            passwordTextField.backgroundColor = UIColor.red
+        }
+        checkCount(inputString: loginTextField)
+        checkCount(inputString: passwordTextField)
+    }
     
+    private func checkCount(inputString: UITextField) {
+        let a = 5
+        if inputString.text!.count < a {
+            errorLabel.textColor = UIColor.purple
+            errorLabel.text = "Колличество символов не соответствует"
+        } else {
+            errorLabel.text = ""
+        }
+        
     }
 
 }
+
+
 
 extension LogInViewController { // KEYBOARD
     
