@@ -84,8 +84,6 @@ class LogInViewController: UIViewController {
             setupConstraints()
             tapGesturt()
         
-        
-            
 
     }
     
@@ -110,6 +108,7 @@ class LogInViewController: UIViewController {
         self.scrollView.addSubview(loginTextField)
         self.scrollView.addSubview(passwordTextField)
         self.scrollView.addSubview(initButton)
+        
         
     }
 
@@ -175,27 +174,26 @@ extension LogInViewController { // KEYBOARD
     }
     
     @objc private func keyboardWillShow(_ notification: Notification) { // ПОДЪЕМ
-    
+        
         if let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
-            let keyboardHeight = keyboardRectangle.height
+            let ketboardHeight = keyboardRectangle.height
             let initButtonBottomY = self.initButton.frame.origin.y + initButton.frame.height
-            let keyboardOriginY = self.view.frame.height - keyboardHeight
-            let contentOffset = keyboardOriginY < initButtonBottomY
-            ? initButtonBottomY - keyboardOriginY + 70
-            : 0
+            let keyboardOriginY = self.view.frame.height - ketboardHeight
             
+            
+           var contentOffset = 0
+            if keyboardOriginY > initButtonBottomY {
+                contentOffset = 125
+            }
             self.scrollView.contentOffset = CGPoint(x: 0, y: contentOffset)
         }
+    
+       
     }
     
     @objc private func keyboardWillHide(_ notification: Notification) { // ОПУСК
         self.view.endEditing(true)
         self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
     }
-    
 }
-
-
-
-

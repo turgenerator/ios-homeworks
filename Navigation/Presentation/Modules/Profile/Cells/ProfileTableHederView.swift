@@ -50,7 +50,7 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
     
     private lazy var fullNameLabel: UILabel = {   // ТЕКСТОВАЯ МЕТКА ИМЕНИ
         let label = UILabel()
-        label.text  = "MaksMai"
+        label.text  = "Nick"
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 18.0)
         
