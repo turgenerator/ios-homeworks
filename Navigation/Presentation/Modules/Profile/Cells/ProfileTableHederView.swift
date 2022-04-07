@@ -105,6 +105,13 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         return button
     }()
     
+    private lazy var emptyStatus: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "dasdasfsaf"
+        return label
+    }()
+    
     private var buttonTopConstrain: NSLayoutConstraint?
     
     weak var delegate: ProfileTableHeaderViewProtocol? // ДЕЛЕГАТ НАЖАТИЯ
@@ -148,6 +155,8 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         let buttonHeightConstraint = self.setStatusButton.heightAnchor.constraint(equalToConstant: 50)
         let buttonBottomConstraint = self.setStatusButton.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -16)
         
+        
+        
         NSLayoutConstraint.activate([
             firstStackViewTopConstraint, firstStackViewLeadingConstraint,
             firstStackViewTrailingConstraint, avatarImageViewRatioConstraint,
@@ -174,6 +183,12 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
                     .compactMap( {$0} ))
             statusTextField.becomeFirstResponder()
         } else {
+            guard statusTextField.text != "" else {
+                statusTextField.shake()
+                statusTextField.backgroundColor = UIColor.red
+                return
+            }
+                
             statusText = statusTextField.text!
             statusLabel.text = "\(statusText ?? "")"
             setStatusButton.setTitle("Show status", for: .normal)
@@ -187,10 +202,15 @@ class ProfileTableHeaderView: UITableViewHeaderFooterView {
         }
     }
     
+    
     @objc func statusTextChanged(_ textField: UITextField) {
+        
         let status: String = textField.text ?? ""
         print("Новый статус = \(status)")
+        
     }
+    
+  
 }
 
     // MARK: - EXTENSIONS

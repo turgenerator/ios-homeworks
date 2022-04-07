@@ -13,13 +13,14 @@ struct News: Decodable { // Создаем структуру Post
         var author: String
         var description: String
         var image: String
-        var likes: String
-        var views: String 
+        var likes: Int
+        var views: Int
 
-        enum CodingKeys: String, CodingKey {
+        enum CodingKeys:  CodingKey {
             case author, description, image, likes, views
         }
     }
+   
 
     let articles: [Article] // массив статей
 }

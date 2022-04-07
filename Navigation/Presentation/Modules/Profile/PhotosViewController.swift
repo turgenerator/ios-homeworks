@@ -106,4 +106,28 @@ extension PhotosViewController: UICollectionViewDelegate, UICollectionViewDataSo
         
         return UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
     }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let animatedPhotoViewController = AnimatedPhotoViewController()
+        
+        let car = carImage[indexPath.row]
+        let viewModel = AnimatedPhotoViewController.ViewModel(image: car.image)
+        animatedPhotoViewController.setup(with: viewModel)
+        
+        self.view.addSubview(animatedPhotoViewController.view)
+        self.addChild(animatedPhotoViewController)
+        animatedPhotoViewController.view.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            animatedPhotoViewController.view.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            animatedPhotoViewController.view.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            animatedPhotoViewController.view.topAnchor.constraint(equalTo: view.topAnchor),
+            animatedPhotoViewController.view.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
+        animatedPhotoViewController.didMove(toParent: self)
+    }
 }
+
+
