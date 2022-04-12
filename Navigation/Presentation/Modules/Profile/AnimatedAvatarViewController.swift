@@ -92,20 +92,21 @@ class AnimatedAvatarViewController: UIViewController {
         ].compactMap( {$0} ))
         self.view.backgroundColor = .black.withAlphaComponent(0.8)
         
-        UIView.animate(withDuration: 1, animations: { // замедляем открытие/закрытие текстового поля
-            // self.avatarImage.layer.cornerRadius = self.view.frame.width / 2 // всю красоту испортили
+        UIView.animate(withDuration: 1, animations: {
+            self.avatarImage.layer.cornerRadius = self.view.frame.width / 2
             self.view.layoutIfNeeded()
         }) { _ in
             self.transitionButton.alpha = 1
             self.avatarImage.layer.cornerRadius = 0.0
             
             UIView.animate(withDuration: 0.25) {
-            self.view.layoutIfNeeded()
+                self.view.layoutIfNeeded()
             }
         }
     }
     
-    func moveOut() {
+    private func moveOut() {
+        self.avatarImage.layer.cornerRadius = self.view.frame.width / 2
         NSLayoutConstraint.deactivate([
             self.positionXAvatarImage, self.positionYAvatarImage,
             self.widthAvatarImage, self.heightAvatarImage
@@ -123,16 +124,17 @@ class AnimatedAvatarViewController: UIViewController {
         
         self.view.backgroundColor = .black.withAlphaComponent(0.8)
         self.transitionButton.alpha = 0.0
-        self.avatarImage.layer.cornerRadius = 70.0
         
         UIView.animate(withDuration: 1, animations: {
+            self.avatarImage.layer.cornerRadius = 70.0
             self.view.layoutIfNeeded()
         }) { _ in
+            
             self.view.removeFromSuperview()
         }
     }
     
-    @objc private func clickButton() {  // возвращение к родительскому ViewController
+    @objc private func clickButton() {
         moveOut()
     }
 }

@@ -9,7 +9,7 @@ import UIKit
 protocol ProfileTableHeaderViewProtocol: AnyObject {
     func buttonAction(inputTextIsVisible: Bool, completion: @escaping () -> Void) // TEXTFIELD ISHIDDEN
     
-    func delegateAction(cell: ProfileTableHeaderView) // ПРИКОСНОВЕНИЕ К АВАТАР
+    func delegateActionAnimatedAvatar(cell: ProfileTableHeaderView) // ПРИКОСНОВЕНИЕ К АВАТАР
 }
 
 class ProfileTableHeaderView: UITableViewHeaderFooterView {
@@ -232,6 +232,8 @@ extension ProfileTableHeaderView: UIGestureRecognizerDelegate { // ПРИКОС�
     
     @objc func handleTapGesture(_ gestureRecognizer: UITapGestureRecognizer) {
         guard self.tapGestureRecognizer === gestureRecognizer else { return }
-        delegate?.delegateAction(cell: self)
+        delegate?.delegateActionAnimatedAvatar(cell: self)
     }
 }
+
+

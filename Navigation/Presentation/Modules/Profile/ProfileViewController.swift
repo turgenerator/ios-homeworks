@@ -202,6 +202,8 @@ extension ProfileViewController: ProfileTableHeaderViewProtocol {
         }
     }
     
+    
+    
     func delegateActionAnimatedAvatar(cell: ProfileTableHeaderView) { // АНИМАЦИЯ АВАТАР
         let animatedAvatarViewController = AnimatedAvatarViewController()
         self.view.addSubview(animatedAvatarViewController.view)

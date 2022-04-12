@@ -6,7 +6,7 @@ import UIKit
 class LogInViewController: UIViewController {
     
     
-    let login = "torch2120@gmail.com"
+    let login = "1234@gmail.com"
     let password = "12345678"
     private lazy var scrollView: UIScrollView = {
         let scrollView = UIScrollView()
