@@ -186,6 +186,11 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension ProfileViewController: ProfileTableHeaderViewProtocol {
+    func buttonAction2() {
+        self.tableView.beginUpdates()
+        self.tableView.endUpdates()
+    }
+    
     func delegateAction(cell: ProfileTableHeaderView) {
         //
     }
@@ -193,7 +198,7 @@ extension ProfileViewController: ProfileTableHeaderViewProtocol {
     
     func buttonAction(inputTextIsVisible: Bool, completion: @escaping () -> Void) { // АНИМАЦИЯ HEADER
         self.tableView.beginUpdates()
-        self.isExpanded = !inputTextIsVisible
+      //  self.isExpanded = !inputTextIsVisible
         self.tableView.endUpdates()
         UIView.animate(withDuration: 0.2, delay: 0.0) {
             self.view.layoutIfNeeded()

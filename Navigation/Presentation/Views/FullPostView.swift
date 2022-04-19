@@ -11,6 +11,7 @@ class FullPostView: UIView {
     
     // MARK: - PROPERTIES
     
+    
     struct ViewModel: ViewModelProtocol { // MODEL
         var author: String
         var description: String
@@ -196,7 +197,9 @@ class FullPostView: UIView {
             buttonTopConstrain, buttonTrailingConstraint,
             buttonHeightConstraint, buttonWidthConstraint
         ])
+        
     }
+    
     
     @objc private func clickButton() {  // возвращение к родительскому ViewController
         removeFromSuperview()
@@ -214,6 +217,6 @@ extension FullPostView: Setupable { // MODEL
         self.postImageView.image = UIImage(named: viewModel.image)
         self.descriptionLabel.text = viewModel.description
         self.likeTitle.text = "Likes: " + String(viewModel.likes)
-        self.viewTitle.text = "Views: " + String(viewModel.views)
+        self.viewTitle.text = "Views: " + String(viewModel.views + 1)
     }
 }

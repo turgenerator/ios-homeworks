@@ -209,7 +209,7 @@ class LogInViewController: UIViewController {
         let a = 5
         if inputString.text!.count < a {
             errorLabel.textColor = UIColor.purple
-            errorLabel.text = "Колличество символов не соответствует,  login = torch2120@gmail.com,password = 12345678"
+            errorLabel.text = "Колличество символов не соответствует,   login = 1234@gmail.com password = 12345678"
              
         } else {
             errorLabel.text = ""
