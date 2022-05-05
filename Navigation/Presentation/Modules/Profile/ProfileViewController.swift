@@ -20,7 +20,7 @@ final class ProfileViewController: UIViewController {
     }()
     
     private lazy var tableView: UITableView = { // создаем таблвью
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.backgroundColor = .systemGray6
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.dataSource = self
@@ -31,6 +31,9 @@ final class ProfileViewController: UIViewController {
         tableView.register(ProfileTableHeaderView.self, forHeaderFooterViewReuseIdentifier: "TableHeder")
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 44
+        
+        
+        
         
         return tableView
     }()
